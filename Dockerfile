@@ -1,8 +1,13 @@
-FROM python:3.12.7-alpine
+FROM python:3.12.7-alpine AS builder
+COPY . /app
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+FROM python:3.12.7-alpine AS runner
 LABEL author="khaja" organization="lt"
 USER nobody
+COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --chown=nobody . /app
 WORKDIR /app
 EXPOSE 8000
-RUN pip install --no-cache-dir -r requirements.txt
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
