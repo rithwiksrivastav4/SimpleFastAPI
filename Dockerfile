@@ -1,4 +1,4 @@
-FROM python:3.13
+FROM python:3.12
 LABEL author="khaja" organization="lt"
 COPY . /app
 WORKDIR /app
