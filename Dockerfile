@@ -1,6 +1,13 @@
 FROM python:3.12.7-alpine AS builder
-COPY . /app
-RUN pip install --upgrade pip --no-cache-dir -r requirements.txt
+# Create a working directory
+WORKDIR /app
+
+# Copy requirements.txt into the working directory
+COPY requirements.txt .
+
+# Upgrade pip and install dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
 
 FROM python:3.12.7-alpine AS runner
