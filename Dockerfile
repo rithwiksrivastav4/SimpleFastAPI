@@ -1,6 +1,6 @@
 FROM python:3.12.7-alpine AS builder
 COPY . /app
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 
 FROM python:3.12.7-alpine AS runner
