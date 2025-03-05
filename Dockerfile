@@ -7,7 +7,7 @@ COPY . .
 
 # Stage 2: Runner
 FROM python:3.12.7-alpine AS runner
-LABEL author="khaja" organization="lt"
+LABEL author="rithwik" organization="lt"
 USER nobody
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --chown=nobody . /app
